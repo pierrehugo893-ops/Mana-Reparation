@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mana réparation | Taiohae - Nuku Hiva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e293b;
+            --secondary: #0f172a;
+            --accent: #d97706;
+            --accent-hover: #b45309;
+            --light-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius: 10px;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1, h2, h3, h4, .brand {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--secondary);
+            color: #fff;
+            padding: 0.5rem 5%;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .top-bar-info span {
+            margin-right: 15px;
+        }
+
+        /* Header / Nav */
+        header {
+            background: var(--primary);
+            color: #fff;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand span {
+            color: var(--accent);
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .btn-call {
+            background: var(--accent);
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background 0.3s;
+        }
+
+        .btn-call:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
+                        url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: #fff;
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+
+        .hero-location {
+            display: inline-block;
+            background: rgba(217, 119, 6, 0.2);
+            border: 1px solid var(--accent);
+            color: #fef08a;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Notice Banner */
+        .notice-bar {
+            background: #fef3c7;
+            border-bottom: 1px solid #fde047;
+            color: #92400e;
+            padding: 0.8rem 5%;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Container Général */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Presentation */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-img-box {
+            position: relative;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--accent);
+            color: #fff;
+            padding: 1.2rem;
+            border-radius: var(--radius);
+            font-weight: 800;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--accent);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Order Parts Section */
+        .parts-box {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .parts-content h3 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .parts-content ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .parts-content li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-quote {
+            background: var(--accent);
+            color: #fff;
+            padding: 1rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            text-align: center;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .btn-quote:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Local Repere Box */
+        .repere-box {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .repere-info h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .repere-list {
+            list-style: none;
+        }
+
+        .repere-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+
+        .svg-illustration {
+            width: 100%;
+            height: 280px;
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        /* Engagements */
+        .commitments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .commitment-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent);
+        }
+
+        .commitment-card h3 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .commitment-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: #fff;
+            padding: 3rem 5% 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col p {
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #334155;
+            padding-top: 1.5rem;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .about-grid, .parts-box, .repere-box { grid-template-columns: 1fr; }
+            .experience-badge { position: static; margin-top: 1rem; }
+            header { flex-direction: column; gap: 10px; text-align: center; }
+            nav { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="top-bar-info">
+            <span>📍 Village de Taiohae (à côté de la boulangerie Joseph)</span>
+            <span>🕒 Lun - Ven : 7h00 - 16h00</span>
+        </div>
+        <div>
+            <span>Nuku Hiva - Îles Marquises</span>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <a href="#" class="brand">Mana <span>réparation</span></a>
+        <nav>
+            <a href="#about">L'Atelier</a>
+            <a href="#services">Prestations</a>
+            <a href="#pieces">Pièces Détachées</a>
+            <a href="#contact">Contact & Accès</a>
+            <a href="tel:87381692" class="btn-call">📞 87 38 16 92</a>
+        </nav>
+    </header>
+
+    <!-- Banner Avertissement -->
+    <div class="notice-bar">
+        🛠️ Devis gratuit établi directement à l'atelier pour tout type d'intervention.
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-location">Taiohae • Nuku Hiva • Îles Marquises</div>
+            <h1>Entretien & Réparation Automobile</h1>
+            <p>Votre spécialiste mécanique de confiance à Nuku Hiva. Expertise, diagnostic rigoureux et service personnalisé pour tous vos véhicules.</p>
+            <div class="hero-buttons">
+                <a href="tel:87381692" class="btn-call" style="padding: 0.8rem 1.6rem; font-size: 1.05rem;">Appeler Mana réparation (87 38 16 92)</a>
+                <a href="#contact" class="btn-secondary">Voir le plan d'accès</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Presentation Section -->
+    <section id="about" class="container">
+        <div class="about-grid">
+            <div class="about-img-box">
+                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80" alt="4x4 tout-terrain sur une piste" class="about-img">
+                <div class="experience-badge">
+                    <div>Expérience forgée</div>
+                    <div style="font-size: 0.85rem; font-weight: normal;">à Tahiti & aux Marquises</div>
+                </div>
+            </div>
+            <div>
+                <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.85rem;">Votre Mécanicien à Taiohae</span>
+                <h2 style="font-size: 2rem; color: var(--primary); margin: 0.5rem 0 1rem;">L'expérience marquisienne au service de votre véhicule</h2>
+                <p>Installé à Nuku Hiva depuis de nombreuses années, Mana réparation a construit sa réputation sur un travail rigoureux, honnête et durable.</p>
+                <br>
+                <p>Après avoir forgé son expérience dans plusieurs ateliers réputés, notamment à Tahiti, nous mettons aujourd'hui notre savoir-faire au service des habitants, des professionnels et des visiteurs de Taiohae.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" style="background: #edf2f7; padding: 4rem 0;">
+        <div class="container" style="padding-top: 0; padding-bottom: 0;">
+            <div class="section-title">
+                <h2>Prestations & Interventions</h2>
+                <p>Un entretien complet pour braver les routes et pistes des Marquises en toute sécurité</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🛢️</div>
+                    <h3>Vidange & Entretien Courant</h3>
+                    <p>Vidange moteur, remplacement des filtres (huile, air, carburant) et contrôle complet de tous les niveaux de fluides.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🛑</div>
+                    <h3>Système de Freinage</h3>
+                    <p>Contrôle et remplacement des plaquettes, disques, tambours et purge du liquide de frein pour une sécurité optimale.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🚙</div>
+                    <h3>Suspensions & Amortisseurs</h3>
+                    <p>Diagnostic et remplacement des amortisseurs, rotules, silentblocs et triangles, indispensables pour les pistes de Nuku Hiva.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🛞</div>
+                    <h3>Pneumatiques & Crevaison</h3>
+                    <p>Montage de pneus neufs, réparation de crevaisons et équilibrage pour vos trajets quotidiens ou vos excursions 4x4.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Moteur & Embrayage</h3>
+                    <p>Recherche de pannes mécaniques, remplacement du kit d'embrayage, courroie de distribution et pompe à eau.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔋</div>
+                    <h3>Électricité Auto Basique</h3>
+                    <p>Test et remplacement de batteries, démarreurs, alternateurs, bougies de préchauffage et systèmes d'éclairage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Conseil & Recommandation de Pièces -->
+    <section id="pieces" class="container">
+        <div class="parts-box">
+            <div class="parts-content">
+                <h3>Besoin d'une pièce spécifique ?</h3>
+                <p>Nous vous accompagnons dans le choix de vos composants et vous orientons vers les meilleurs fournisseurs partenaires.</p>
+                <ul>
+                    <li>✓ Recommandations personnalisées des références adaptées à votre modèle</li>
+                    <li>✓ Orientation vers des revendeurs de confiance basés à Tahiti</li>
+                    <li>✓ Conseils sur les meilleures options d'expédition vers Nuku Hiva (fret maritime ou aérien)</li>
+                </ul>
+            </div>
+            <div>
+                <a href="tel:87381692" class="btn-quote">Demander conseil à l'atelier</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Repère Local & Accès -->
+    <section id="contact" class="container" style="padding-top: 0;">
+        <div class="repere-box">
+            <div class="repere-info">
+                <h3>Où nous trouver à Taiohae ?</h3>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted);">L'atelier est idéalement situé au cœur du village pour déposer facilement votre véhicule.</p>
+                <ul class="repere-list">
+                    <li>📍 <strong>Adresse :</strong> Village de Taiohae</li>
+                    <li>🍞 <strong>Repère local :</strong> Juste à côté de la boulangerie Joseph</li>
+                    <li>🕒 <strong>Horaires :</strong> Du Lundi au Vendredi, de 7h00 à 16h00</li>
+                </ul>
+            </div>
+            <div class="svg-illustration">
+                <!-- SVG d'atelier de mécanique auto garanti 100% fonctionnel -->
+                <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                    <circle cx="12" cy="12" r="9" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="2 2"></circle>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Les Engagements du Garage -->
+    <section class="container" style="padding-top: 0;">
+        <div class="section-title">
+            <h2>Nos Engagements Qualité</h2>
+            <p>Une relation de confiance au quotidien pour tous les automobilistes de Nuku Hiva</p>
+        </div>
+        <div class="commitments-grid">
+            <div class="commitment-card">
+                <h3>🤝 Transparence Totale</h3>
+                <p>Chaque intervention fait l'objet d'un devis clair établi avant le début des travaux. Pas de mauvaise surprise à la facturation.</p>
+            </div>
+            <div class="commitment-card">
+                <h3>🌴 Proximité & Disponibilité</h3>
+                <p>Situé au cœur de Taiohae, le garage reste à votre écoute pour vous conseiller et entretenir votre véhicule selon les exigences du terrain insulaire.</p>
+            </div>
+            <div class="commitment-card">
+                <h3>🛠️ Montage & Suivi Soigné</h3>
+                <p>Installation dans les règles de l'art pour garantir la durabilité et la fiabilité de votre 4x4 ou citadine sur les pistes des Marquises.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Mana réparation</h4>
+                <p>Village de Taiohae</p>
+                <p>À côté de la boulangerie Joseph</p>
+                <p>Nuku Hiva - Îles Marquises</p>
+            </div>
+            <div class="footer-col">
+                <h4>Horaires d'ouverture</h4>
+                <p>Lundi au Vendredi : 7h00 - 16h00</p>
+                <p>Samedi & Dimanche : Fermé</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Direct</h4>
+                <p>📞 Téléphone : 87 38 16 92</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Mana réparation - Taiohae, Nuku Hiva. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
